@@ -8,7 +8,25 @@ import asyncio
 # Import your models and config
 from src.core.config import settings
 from src.core.database import Base
-from src.models.user import User  # Import all models here
+
+# Import all models to ensure they are registered with Base.metadata
+from src.models import (
+    Tenant,
+    User,
+    Company,
+    FinancialYear,
+    Valuation,
+    ValuationMethodResult,
+    SensitivityAnalysis,
+    Forecast,
+    ForecastPrediction,
+    Workflow,
+    WorkflowPhase,
+    Task,
+    IntegrationConnection,
+    Export,
+    AuditLog,
+)
 
 # this is the Alembic Config object
 config = context.config
