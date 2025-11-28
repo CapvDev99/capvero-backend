@@ -70,6 +70,7 @@ jobs:
             --platform=managed \
             --region=${{ env.REGION }} \
             --allow-unauthenticated \
+            --set-env-vars="SECRET_KEY=${{ secrets.SECRET_KEY }},DATABASE_URL=${{ secrets.DATABASE_URL }},ENVIRONMENT=${{ steps.set-env.outputs.ENVIRONMENT }},DEBUG=False" \
             --add-cloudsql-instances=capveroone:europe-west6:capvero-db \
             --memory=1Gi \
             --cpu=1 \
@@ -82,4 +83,4 @@ jobs:
           gcloud run services describe ${{ env.SERVICE_NAME }}${{ steps.set-env.outputs.SERVICE_SUFFIX }} \
             --platform managed \
             --region ${{ env.REGION }} \
-            --format 'value(status.url)'
+            --format 'value(status.url )'
